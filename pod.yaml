@@ -1,0 +1,247 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: Valheim-Server
+  name: Valheim-Server
+spec:
+  restartPolicy: Always
+
+  containers:
+    - name: server
+      image: docker.io/lloesche/valheim-server
+      envFrom:
+        - configMapRef:
+            name: nextcloud
+      env:
+        - name: BACKUPS_DIRECTORY
+          value: /backups
+        - name: SERVER_PUBLIC
+          value: false
+        - name: VALHEIM_PLUS
+          value: true
+        - name: BEPINEXCFG_Logging_DOT_Console_Enabled
+          value: true
+        - name: VPCFG_Server_enabled
+          value: true
+        - name: VPCFG_Server_enfoceMod
+          value: true
+        - name: VPCFG_Server_dataRate
+          value: 150
+        - name: VPCFG_Server_serverSyncsConfig
+          value: true
+        - name: VPCFG_Server_serverSyncHotkeys
+          value: false
+        - name: VPCFG_AdvancedBuildingMode_enabled
+          value: true
+        - name: VPCFG_AdvancedEditingMode_enabled
+          value: true
+        - name: VPCFG_Beehive_enabled
+          value: true
+        - name: VPCFG_Beehive_maximumHoneyPerBeehive
+          value: 10
+        - name: VPCFG_Beehive_autoDeposit
+          value: true
+        - name: VPCFG_Beehive_showDuration
+          value: true
+        - name: VPCFG_Building_enabled
+          value: true
+        - name: VPCFG_Building_maximumPlacementDistance
+          value: 10
+        - name: VPCFG_Building_pieceComfortRadius
+          value: 20
+        - name: VPCFG_Building_alwaysDropResources
+          value: true
+        - name: VPCFG_Building_alwaysDropExcludedResources
+          value: true
+        - name: VPCFG_Building_enableAreaRepair
+          value: true
+        - name: VPCFG_Fermenter_enabled
+          value: true
+        - name: VPCFG_Fermenter_showDuration
+          value: true
+        - name: VPCFG_Fermenter_autoDeposit
+          value: true
+        - name: VPCFG_Fermenter_autoFuel
+          value: true
+        - name: VPCFG_FireSource_enabled
+          value: true
+        - name: VPCFG_FireSource_torches
+          value: true
+        - name: VPCFG_Smelter_enabled
+          value: true
+        - name: VPCFG_Smelter_autoDeposit
+          value: true
+        - name: VPCFG_Smelter_autoFuel
+          value: true
+        - name: VPCFG_Smelter_autoRange
+          value: 20
+        - name: VPCFG_Furnace_enabled
+          value: true
+        - name: VPCFG_Furnace_autoDeposit
+          value: true
+        - name: VPCFG_Furnace_autoFuel
+          value: true
+        - name: VPCFG_Furnace_autoRange
+          value: 20
+        - name: VPCFG_Furnace_allowAllOres
+          value: false
+        - name: VPCFG_Hotkeys_enabled
+          value: true
+        - name: VPCFG_Items_enabled
+          value: true
+        - name: VPCFG_Items_itemStackMultiplier
+          value: 100
+        - name: VPCFG_Items_itemsFloatInWater
+          value: true
+        - name: VPCFG_Hud_enabled
+          value: true
+        - name: VPCFG_Hud_showRequiredItems
+          value: true
+        - name: VPCFG_Hud_displayBowAmmoCounts
+          value: 1
+        - name: VPCFG_Kiln_enabled
+          value: true
+        - name: VPCFG_Kiln_maximumWood
+          value: 100
+        - name: VPCFG_Kiln_autoDeposit
+          value: true
+        - name: VPCFG_Kiln_autoFuel
+          value: true
+        - name: VPCFG_Kiln_stopAutoFuelThreshold
+          value: 500
+        - name: VPCFG_Kiln_autoRange
+          value: 20
+        - name: VPCFG_Map_enabled
+          value: true
+        - name: VPCFG_Map_exploreRadius
+          value: 200
+        - name: VPCFG_Map_shareAllPins
+          value: true
+        - name: VPCFG_Map_displayCartsAndBoats
+          value: true
+        - name: VPCFG_Player_enabled
+          value: true
+        - name: VPCFG_Player_cropNotifier
+          value: true
+        - name: VPCFG_Player_restSecondsPerComfortLevel
+          value: 90
+        - name: VPCFG_Player_autoRepair
+          value: true
+        - name: VPCFG_Player_queueWeaponChanges
+          value: true
+        - name: VPCFG_Player_skipIntro
+          value: true
+        - name: VPCFG_Player_reequipItemsAfterSwimming
+          value: true
+        - name: VPCFG_Stamina_enabled
+          value: true
+        - name: VPCFG_Stamina_jumpStaminaDrain
+          value: -50
+        - name: VPCFG_Stamina_swimStaminaDrain
+          value: -50
+        - name: VPCFG_StaminaUsage_enabled
+          value: true
+        - name: VPCFG_StaminaUsage_hammer
+          value: -100
+        - name: VPCFG_StaminaUsage_hoe
+          value: -100
+        - name: VPCFG_StaminaUsage_cultivator
+          value: -100
+        - name: VPCFG_Ward_enabled
+          value: true
+        - name: VPCFG_Ward_wardRange
+          value: 20
+        - name: VPCFG_Workbench_enabled
+          value: true
+        - name: VPCFG_Workbench_workbenchRange
+          value: 25
+        - name: VPCFG_Workbench_workbenchAttachmentRange
+          value: 10
+        - name: VPCFG_Inventory_enabled
+          value: true
+        - name: VPCFG_Inventory_mergeWithExistingStacks
+          value: true
+        - name: VPCFG_Inventory_playerInventoryRows
+          value: 6
+        - name: VPCFG_Inventory_karveInventoryRows
+          value: 3
+        - name: VPCFG_Inventory_longboatInventoryRows
+          value: 10
+        - name: VPCFG_FirstPerson_enabled
+          value: true
+        - name: VPCFG_GridAlignment_enabled
+          value: true
+        - name: VPCFG_CraftFromChest_enabled
+          value: true
+        - name: VPCFG_CraftFromChest_range
+          value: 40
+        - name: VPCFG_CraftFromChest_allowCraftingFromCarts
+          value: true
+        - name: VPCFG_Windmill_enabled
+          value: true
+        - name: VPCFG_Windmill_autoDesposit
+          value: true
+        - name: VPCFG_Windmill_autoFuel
+          value: true
+        - name: VPCFG_SpinningWheel_enabled
+          value: true
+        - name: VPCFG_SpinningWheel_autoDeposit
+          value: true
+        - name: VPCFG_SpinningWheel_autoFuel
+          value: true
+        - name: VPCFG_Tameable_enabled
+          value: true
+        - name: VPCFG_Tameable_mortality
+          value: 1
+        - name: VPCFG_Tameable_stunRecoveryTime
+          value: 60
+        - name: VPCFG_Tameable_stunInformation
+          value: true
+      ports:
+        - containerPort: 2456
+          hostPort: 2456
+          protocol: UDP
+        - containerPort: 2457
+          hostPort: 2457
+          protocol: UDP
+      resources: {}
+      securityContext:
+        capabilities:
+          add:
+            - CAP_SYS_NICE
+          drop:
+            - CAP_MKNOD
+            - CAP_AUDIT_WRITE
+      volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /opt/valheim
+          name: data
+        - mountPath: /backups
+          name: backup
+        - mountPath: /opt/valheim/plus/BepInEx/config/HookGenPatcher.cfg
+          name: hook_gen_patcher_config
+        - mountPath: /opt/valheim/plus/BepInEx/pathcers/BepInEx.MonoMod.HookGenPatcher
+          name: hook_gen_patcher_patcher
+  volumes:
+    - name: config
+      hostPath:
+        path: /home/valheim/server/config
+        type: Directory
+    - name: data
+      hostPath:
+        path: /home/valheim/server/data
+        type: Directory
+    - name: backup
+      hostPath:
+        path: /home/valheim/server/backups
+        type: Directory
+    - name: hook_gen_patcher_config
+      hostPath:
+        path: /home/valheim/server/HookGenPatcher/config/HookGenPatcher.cfg
+        type: File
+    - name: hook_gen_patcher_patcher
+      hostPath:
+        path: /home/valheim/server/HookGenPatcher/patchers/BepInEx.MonoMod.HookGenPatcher
+        type: Directory
